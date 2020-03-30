@@ -1,0 +1,44 @@
+project:
+    stacktrace-error: true
+        
+info:
+    version: ${project.version}
+    jdk: 11
+
+server: 
+    servlet: 
+        contextPath: /cateno/rest/
+    port: 8180
+
+
+management:
+    endpoint:
+        health:
+            show-details: "ALWAYS"
+        web:
+            base-path: "/app"
+    endpoints:
+        web:
+            base-path: "/app"
+
+spring:
+    servlet:
+        multipart:
+            enabled: true
+            max-file-size: 50MB
+    main:
+        allow-bean-definition-overriding: true
+    jpa: 
+        properties: 
+
+        batch:
+            size: 100
+    jackson: 
+        default-property-inclusion: non_empty
+    session:
+        timeout: 5s
+
+
+api:
+    bc:
+        url: https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)    
