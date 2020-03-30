@@ -30,6 +30,9 @@ spring:
         allow-bean-definition-overriding: true
     jpa: 
         properties: 
+            hibernate:
+                dialect: org.hibernate.dialect.MySQL5Dialect
+                ddl-auto: update
 
         batch:
             size: 100
@@ -37,7 +40,14 @@ spring:
         default-property-inclusion: non_empty
     session:
         timeout: 5s
-
+    datasource:
+        driver-class-name: com.mysql.jdbc.Driver
+        url: jdbc:mysql://172.17.0.2:3306/cateno?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false
+        username: root
+        password: root
+        platform: mysql
+        initialization-mode: always
+        validationQuery: SELECT 1
 
 api:
     bc:

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.cateno.application.BancoCentral;
-import com.br.cateno.domain.Requisicao;
+import com.br.cateno.domain.Cateno;
 import com.br.cateno.dto.BodyDTO;
 
 import lombok.RequiredArgsConstructor;
@@ -26,7 +26,7 @@ public class CotacaoDolar {
     }
 
     @GetMapping("cotacao/pesquisadas")
-    public List<Requisicao> consultarBd() {
+    public List<Cateno> consultarBd() {
         return bc.listagemCotacao();
     }
 }

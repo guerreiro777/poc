@@ -8,8 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.br.cateno.domain.Requisicao;
-import com.br.cateno.domain.RequisicaoRepositoy;
+import com.br.cateno.domain.Cateno;
+import com.br.cateno.domain.CatenoRepositoy;
 import com.br.cateno.dto.BodyDTO;
 
 import lombok.AllArgsConstructor;
@@ -21,7 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BancoCentral {
 
     private final Environment env;
-    RequisicaoRepositoy repository;
+    CatenoRepositoy repository;
 
     public BodyDTO cotacao(final String data) {
         final RestTemplate rest = new RestTemplate();
@@ -32,13 +32,13 @@ public class BancoCentral {
         return postForEntity.getBody();
     }
 
-    public List<Requisicao> listagemCotacao() {
+    public List<Cateno> listagemCotacao() {
         return repository.findAll();
     }
 
     private void persiste(final BodyDTO bodyDTO) {
         bodyDTO.getValue().stream().forEach(cotacao -> {
-            final Requisicao requisicao = new Requisicao();
+            final Cateno requisicao = new Cateno();
             requisicao.setDtCotacao(cotacao.getDataHoraCotacao());
             requisicao.setDtHoraCotacao(cotacao.getDataHoraCotacao());
             requisicao.setDtRequisicao(LocalDateTime.now());
