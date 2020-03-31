@@ -2,9 +2,11 @@ package com.br.cateno.rest;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.cateno.application.BancoCentral;
@@ -21,7 +23,7 @@ public class CotacaoDolar {
     private final BancoCentral bc;
 
     @GetMapping("cotacao/banco-central/{data}")
-    public BodyDTO consultarBc(@RequestParam(name = "data") final String data) {
+    public BodyDTO consultarBc(final HttpServletRequest request, @PathVariable("data") final String data) {
         return bc.cotacao(data);
     }
 
