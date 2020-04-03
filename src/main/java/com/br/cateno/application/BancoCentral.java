@@ -11,6 +11,8 @@ import org.springframework.web.client.RestTemplate;
 import com.br.cateno.domain.Cateno;
 import com.br.cateno.domain.CatenoRepositoy;
 import com.br.cateno.dto.BodyDTO;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -37,15 +39,24 @@ public class BancoCentral {
     }
 
     private void persiste(final BodyDTO bodyDTO) {
-        bodyDTO.getValue().stream().forEach(cotacao -> {
-            final Cateno requisicao = new Cateno();
-            requisicao.setDtCotacao(cotacao.getDataHoraCotacao());
-            requisicao.setDtHoraCotacao(cotacao.getDataHoraCotacao());
-            requisicao.setDtRequisicao(LocalDateTime.now());
-            requisicao.setVlCompra(Float.parseFloat(cotacao.getCotacaoCompra()));
-            requisicao.setVlVenda(Float.parseFloat(cotacao.getCotacaoVenda()));
-            repository.save(requisicao);
-        });
+        try {
+            final ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
+            final String json = ow.writeValueAsString(bodyDTO);
+            BancoCentral.log.info(json);
+        } catch (final Exception e) {
+            BancoCentral.log.info(e.getMessage());
+        }
+        if (!bodyDTO.getValue().isEmpty()) {
+            bodyDTO.getValue().stream().forEach(cotacao -> {
+                final Cateno requisicao = new Cateno();
+                requisicao.setDtCotacao(cotacao.getDataHoraCotacao());
+                requisicao.setDtHoraCotacao(cotacao.getDataHoraCotacao());
+                requisicao.setDtRequisicao(LocalDateTime.now());
+                requisicao.setVlCompra(Float.parseFloat(cotacao.getCotacaoCompra()));
+                requisicao.setVlVenda(Float.parseFloat(cotacao.getCotacaoVenda()));
+                repository.save(requisicao);
+            });
+        }
     }
 
 }

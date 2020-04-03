@@ -1,16 +1,32 @@
 version: '3.5'
  
 services:
+version: '3.5'
+ 
+services:
 #BD
   mysqldb:
-    image: mysql:8
-    container_name: cateno-db-app
-    networks:
-    - network-cateno
+    image: mysql:5.6
     environment:
-    - MYSQL_ROOT_PASSWORD=root
-    - MYSQL_DATABASE=cateno
+     - MYSQL_ROOT_PASSWORD=root
+     - MYSQL_DATABASE=cateno
+    ports:
+      - "3306:3306"
     restart: always
+    volumes:
+     - ./database/ /docker-entrypoint-initdb.d/
+
+#ADMIN     
+  phpmyadmin:
+   depends_on:
+     - mysqldb
+   image: phpmyadmin/phpmyadmin
+   links:
+      - mysqldb
+   ports:
+     - 80:80
+   environment:
+      - PMA_ARBITRARY=1
 
 #APP
   cateno:
@@ -19,8 +35,10 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      WAIT_HOSTS: mysqldb:3306
-      WAIT_HOSTS_TIMEOUT: 120
+      - WAIT_HOSTS=mysqldb:3306
+      - WAIT_HOSTS_TIMEOUT=120
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
     ports:
      - "8180:8180"
     expose:
