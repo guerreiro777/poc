@@ -1,4 +1,4 @@
-package com.br.cateno.dto;
+package com.br.poc.dto;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 

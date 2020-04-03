@@ -7,7 +7,7 @@ info:
 
 server: 
     servlet: 
-        contextPath: /cateno/rest/
+        contextPath: /poc/rest/
     port: 8180
 
 
@@ -40,7 +40,7 @@ spring:
     session:
         timeout: 5s
     datasource:
-        url: jdbc:mysql://mysqldb/cateno
+        url: jdbc:mysql://mysqldb/poc
         username: root
         password: root
         platform: mysql

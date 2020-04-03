@@ -28,7 +28,7 @@ apply plugin: 'docker'
 sourceCompatibility = '11'
 
 jar {
-	baseName = 'cateno'
+	baseName = 'poc'
     version =  '1.0'
 }
 

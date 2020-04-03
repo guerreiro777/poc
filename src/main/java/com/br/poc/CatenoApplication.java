@@ -1,4 +1,4 @@
-package com.br.cateno;
+package com.br.poc;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -8,10 +8,10 @@ import org.springframework.cache.annotation.EnableCaching;
 @SpringBootApplication
 @ServletComponentScan
 @EnableCaching
-public class CatenoApplication {
+public class POCApplication {
 
     public static void main(final String[] args) {
-        SpringApplication.run(CatenoApplication.class, args);
+        SpringApplication.run(POCApplication.class, args);
     }
 
 }

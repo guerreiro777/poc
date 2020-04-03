@@ -9,7 +9,7 @@ services:
     image: mysql:5.6
     environment:
      - MYSQL_ROOT_PASSWORD=root
-     - MYSQL_DATABASE=cateno
+     - MYSQL_DATABASE=poc
     ports:
       - "3306:3306"
     restart: always
@@ -29,8 +29,8 @@ services:
       - PMA_ARBITRARY=1
 
 #APP
-  cateno:
-    container_name: cateno
+  poc:
+    container_name: poc
     build:
       context: .
       dockerfile: Dockerfile
@@ -49,4 +49,4 @@ services:
       - mysqldb
 #REDE  
 networks:
-  network-cateno: null
+  network-poc: null

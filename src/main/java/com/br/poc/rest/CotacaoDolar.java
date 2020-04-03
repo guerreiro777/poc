@@ -1,4 +1,4 @@
-package com.br.cateno.rest;
+package com.br.poc.rest;
 
 import java.util.List;
 
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.br.cateno.application.BancoCentral;
-import com.br.cateno.domain.Cateno;
-import com.br.cateno.dto.BodyDTO;
+import com.br.poc.application.BancoCentral;
+import com.br.poc.domain.POC;
+import com.br.poc.dto.BodyDTO;
 
 import lombok.RequiredArgsConstructor;
 
@@ -28,7 +28,7 @@ public class CotacaoDolar {
     }
 
     @GetMapping("cotacao/pesquisadas")
-    public List<Cateno> consultarBd() {
+    public List<POC> consultarBd() {
         return bc.listagemCotacao();
     }
 }

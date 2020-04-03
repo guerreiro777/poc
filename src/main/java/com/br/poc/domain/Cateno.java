@@ -1,4 +1,4 @@
-package com.br.cateno.domain;
+package com.br.poc.domain;
 
 import java.time.LocalDateTime;
 
@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "requisicao")
-public class Cateno {
+public class POC {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

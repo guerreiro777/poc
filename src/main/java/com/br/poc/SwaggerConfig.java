@@ -1,4 +1,4 @@
-package com.br.cateno;
+package com.br.poc;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

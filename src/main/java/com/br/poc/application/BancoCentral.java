@@ -1,4 +1,4 @@
-package com.br.cateno.application;
+package com.br.poc.application;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,9 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.br.cateno.domain.Cateno;
-import com.br.cateno.domain.CatenoRepositoy;
-import com.br.cateno.dto.BodyDTO;
+import com.br.poc.domain.POC;
+import com.br.poc.domain.POCRepositoy;
+import com.br.poc.dto.BodyDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.ObjectWriter;
 
@@ -23,7 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 public class BancoCentral {
 
     private final Environment env;
-    CatenoRepositoy repository;
+    POCRepositoy repository;
 
     public BodyDTO cotacao(final String data) {
         final RestTemplate rest = new RestTemplate();
@@ -34,7 +34,7 @@ public class BancoCentral {
         return postForEntity.getBody();
     }
 
-    public List<Cateno> listagemCotacao() {
+    public List<POC> listagemCotacao() {
         return repository.findAll();
     }
 
@@ -48,7 +48,7 @@ public class BancoCentral {
         }
         if (!bodyDTO.getValue().isEmpty()) {
             bodyDTO.getValue().stream().forEach(cotacao -> {
-                final Cateno requisicao = new Cateno();
+                final POC requisicao = new POC();
                 requisicao.setDtCotacao(cotacao.getDataHoraCotacao());
                 requisicao.setDtHoraCotacao(cotacao.getDataHoraCotacao());
                 requisicao.setDtRequisicao(LocalDateTime.now());

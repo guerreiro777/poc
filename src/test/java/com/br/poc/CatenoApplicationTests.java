@@ -1,8 +1,8 @@
-package com.br.cateno;
+package com.br.poc;
 
 //@RunWith(SpringRunner.class)
 //@SpringBootTest
-//public class CatenoApplicationTests {
+//public class POCApplicationTests {
 //
 //    //	@Test
 //    //	public void contextLoads() {

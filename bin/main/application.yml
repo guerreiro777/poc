@@ -7,7 +7,7 @@ info:
 
 server: 
     servlet: 
-        contextPath: /cateno/rest/
+        contextPath: /poc/rest/
     port: 8180
 
 
@@ -43,7 +43,7 @@ spring:
         timeout: 5s
     datasource:
         driver-class-name: com.mysql.jdbc.Driver
-        url: jdbc:mysql://172.17.0.2:3306/cateno?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
+        url: jdbc:mysql://172.17.0.2:3306/poc?useUnicode=true&characterEncoding=UTF-8&allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true
         username: root
         password: root
         platform: mysql
